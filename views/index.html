@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Url Shortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script scr="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-light navbar-static-top" role="navigation">
+    <div class="container">
+
+        <a class="navbar-brand" href="/">ShortenIt!</a>
+
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-success" href="/">Sign In</a></li>
+                <li><a class="btn btn-default" href="/">Sign Up</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="site-wapper">
+    <div class="site-wapper-inner">
+        <div class="main-container">
+            <div class="inner cover">
+
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="input-group input-group-lg">
+                            <input id="url-field" class="form-control" type="text" placeholder="Input link...">
+                                <span class="input-group-btn">
+                                    <button id="shortenButton" class="btn" type="button">ShortenIt!</button>
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="space"></div>
+                        <span class="glyphicon glyphicon-link"></span>
+                        <div class="space"></div>
+                        <div id="link"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#shortenButton').on('click', function () {
+
+            $.ajax({
+                url: '/api/shorten',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {url: $('#url-field').val()},
+
+            })
+
+            var resultHTML = '<h1>Olololo</h1>';
+            $('#link').append(resultHTML);
+            $('#link').hide().fadeIn('slow');
+        })
+
+    })
+</script>
+
+</body>
+</html>
